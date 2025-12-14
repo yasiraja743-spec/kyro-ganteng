@@ -1,0 +1,117 @@
+<!DOCTYPE html><html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DANA Style</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f2f4f7;
+    }.header {
+  background-color: #1a8cff;
+  color: white;
+  padding: 25px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+.balance-card {
+  background-color: white;
+  margin: -40px 15px 10px;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.quick-menu {
+  display: flex;
+  justify-content: space-around;
+  padding: 15px;
+}
+
+.quick-item {
+  text-align: center;
+  font-size: 13px;
+}
+
+.quick-item div {
+  width: 55px;
+  height: 55px;
+  background-color: #e6f2ff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  margin: auto;
+  margin-bottom: 5px;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 15px;
+}
+
+.menu-item {
+  text-align: center;
+  background: white;
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  font-size: 12px;
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 0;
+  box-shadow: 0 -3px 8px rgba(0,0,0,0.1);
+}
+
+.bottom-nav div {
+  text-align: center;
+  font-size: 12px;
+}
+
+.active {
+  color: #1a8cff;
+  font-weight: bold;
+}
+
+  </style>
+</head>
+<body>  <div class="header">DANA</div>  <div class="balance-card">
+    Saldo Rp 1.000.000.000.000
+  </div>  <div class="quick-menu">
+    <div class="quick-item"><div>💸</div>Kirim</div>
+    <div class="quick-item"><div>➕</div>Top Up</div>
+    <div class="quick-item"><div>🏧</div>Tarik</div>
+    <div class="quick-item"><div>📄</div>Scan</div>
+  </div>  <div class="menu-grid">
+    <div class="menu-item">Pulsa</div>
+    <div class="menu-item">Data</div>
+    <div class="menu-item">PLN</div>
+    <div class="menu-item">E-Wallet</div>
+    <div class="menu-item">Game</div>
+    <div class="menu-item">Voucher</div>
+    <div class="menu-item">Paket</div>
+    <div class="menu-item">More</div>
+  </div>  <div class="bottom-nav">
+    <div class="active">🏠 Home</div>
+    <div>💳 Dompet</div>
+    <div>🧾 Riwayat</div>
+    <div>👤 Saya</div>
+  </div></body>
+</html>
