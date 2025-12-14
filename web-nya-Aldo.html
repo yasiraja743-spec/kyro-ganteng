@@ -1,0 +1,127 @@
+<!doctype html>
+
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>xyromc2</title>
+  <style>
+    :root{
+      --accent:#6ef0ff;
+      --white:#ffffff;
+      --bg:#000000;
+      --muted:#bfbfbf;
+    }
+    *{box-sizing:border-box;font-family:Inter,system-ui,Arial,Helvetica,sans-serif}
+    html,body{height:100%;margin:0;background:var(--bg);color:var(--white)}.wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:32px}
+.card{width:100%;max-width:980px;border-radius:12px;padding:24px;background:rgba(255,255,255,0.05);box-shadow:0 6px 30px rgba(0,0,0,0.6);display:grid;grid-template-columns:1fr 360px;gap:20px}
+
+.title{font-weight:800;font-size:44px;letter-spacing:1px;text-transform:none;margin:6px 0;position:relative;display:inline-block}
+.glitch{
+  position:relative;color:#fff;
+}
+.glitch::before,
+.glitch::after{
+  content:"xyromc2";
+  position:absolute;
+  left:0;top:0;width:100%;
+  overflow:hidden;
+  clip:rect(0,900px,0,0);
+}
+.glitch::before{
+  left:2px;text-shadow:-2px 0 red;
+  animation:glitch 1s infinite linear alternate-reverse;
+}
+.glitch::after{
+  left:-2px;text-shadow:-2px 0 cyan;
+  animation:glitch 1.3s infinite linear alternate;
+}
+
+@keyframes glitch{
+  0%{clip:rect(0,999px,0,0)}
+  20%{clip:rect(10px,999px,40px,0)}
+  40%{clip:rect(30px,999px,60px,0)}
+  60%{clip:rect(50px,999px,80px,0)}
+  80%{clip:rect(20px,999px,50px,0)}
+  100%{clip:rect(0,999px,0,0)}
+}
+
+.main{padding:22px}
+.subtitle{color:var(--muted);margin-bottom:18px}
+
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+.item{background:rgba(255,255,255,0.03);padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.07);display:flex;flex-direction:column;gap:8px}
+.item h4{margin:0;font-size:16px}
+.price{font-weight:700}
+.buy{margin-top:auto;padding:8px 10px;border-radius:6px;background:transparent;border:1px solid rgba(110,240,255,0.25);color:var(--white);cursor:pointer}
+
+.side{background:var(--white);color:#111;border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:12px}
+.side h3{margin:0}
+.muted{color:#666;font-size:13px}
+
+footer{margin-top:18px;color:#888;font-size:12px}
+
+@media(max-width:880px){.card{grid-template-columns:1fr;} .title{font-size:36px}}
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="main">
+        <div class="title"><span class="glitch">xyromc2</span></div>
+        <div class="subtitle">Platform penjualan panel — pilih dan pesan otomatis via WhatsApp.</div><h4 style="color:var(--muted);margin-bottom:8px">Daftar Panel / Paket</h4>
+    <div class="products" id="products"></div>
+  </div>
+
+  <aside class="side">
+    <h3>Profil</h3>
+    <div class="muted">Informasi Pengguna</div>
+    <div>Nama: <b id="name">-</b></div>
+    <div>Email: <b id="email">-</b></div>
+    <footer>Tanpa login • Siap jualan</footer>
+  </aside>
+</div>
+
+  </div><script>
+const PRODUCTS=[
+ {id:'5gb',label:'Panel 5GB',price:5000},
+ {id:'6gb',label:'Panel 6GB',price:6000},
+ {id:'7gb',label:'Panel 7GB',price:7000},
+ {id:'8gb',label:'Panel 8GB',price:8000},
+ {id:'9gb',label:'Panel 9GB',price:9000},
+ {id:'unlimited',label:'Panel Unlimited',price:11000}
+];
+
+const WA_NUMBER='6283163569005';
+
+const productsEl=document.getElementById('products');
+
+function renderProducts(){
+ productsEl.innerHTML='';
+ PRODUCTS.forEach(p=>{
+  const el=document.createElement('div');
+  el.className='item';
+  el.innerHTML=`<h4>${p.label}</h4><div class="muted">Harga: <span class="price">Rp ${formatNum(p.price)}</span></div><button class="buy" data-id="${p.id}">Pesan via WhatsApp</button>`;
+  productsEl.appendChild(el);
+ });
+ document.querySelectorAll('.buy').forEach(btn=>{
+  btn.addEventListener('click',e=>{
+   const id=e.currentTarget.dataset.id;
+   const product=PRODUCTS.find(x=>x.id===id);
+   if(!product)return;
+   const text=`Saya mau pesan ${product.label} - Rp ${formatNum(product.price)}`;
+   openWhatsApp(text);
+  });
+ });
+}
+
+function formatNum(n){return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,'.')}
+function openWhatsApp(text){
+ const encoded=encodeURIComponent(text);
+ window.open(`https://wa.me/${WA_NUMBER}?text=${encoded}`,'_blank');
+}
+
+renderProducts();
+</script></body>
+</html>
